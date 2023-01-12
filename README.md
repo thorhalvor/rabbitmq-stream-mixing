@@ -1,2 +1,9 @@
-# rabbitmq-stream-mixing
-Mixing different clients to test the stream parser AMQP 1.0 and AMQP 091
+# RabbitMQ stream Clients Mixing
+
+The scope of this repo is to mix different clients to test the stream parser AMQP 1.0 and AMQP 091.
+
+Clients should work by producing and consuming with differnt protocols (AMQP 091 and AMQP 1.0)
+
+
+
+
