@@ -93,3 +93,5 @@ for (var i = 0; i < numberOfMessages; i++)
         }
     });
 }
+
+await Task.Delay(2000);
