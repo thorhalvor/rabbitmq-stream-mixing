@@ -1,9 +1,10 @@
 .PHONY: producer consumer all
 
 
-# producer:
-# 	@echo "running dot dotnet producer"
-# 	dotnet run --project producer/producer.csproj
+
+producer:
+	@echo "running AMQP pika producer"
+	venv/bin/python3 amqp_client/producer.py
 
 consumer:
 	@echo "running AMQP pika consumer"
