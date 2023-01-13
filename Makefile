@@ -6,12 +6,11 @@ producer:
 
 consumer:
 	cd dotnet/stream_client/ && Make consumer
+	cd python && Make consumer
 
 init:
 	cd dotnet/stream_client/ && Make init
 
 init-python:
 	@echo "init python venv"
-	python3 -m venv .venv
-	@echo "install python dependencies"
-	.venv/bin/pip install -r requirements.txt
+	cd python && make init-python
