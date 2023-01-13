@@ -17,7 +17,6 @@ var loggerFactory = LoggerFactory.Create(builder =>
 });
 
 var producerLogger = loggerFactory.CreateLogger<Producer>();
-var consumerLogger = loggerFactory.CreateLogger<Consumer>();
 var streamLogger = loggerFactory.CreateLogger<StreamSystem>();
 
 
@@ -39,7 +38,7 @@ var producer = await Producer.Create(new ProducerConfig(system, stream)
         count = Interlocked.Increment(ref count);
         await Task.CompletedTask;
     },
-});
+}, producerLogger);
 
 Console.WriteLine($"Producer Created for stream {stream} ");
 
