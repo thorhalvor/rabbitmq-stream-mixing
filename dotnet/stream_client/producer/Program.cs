@@ -34,8 +34,11 @@ var producer = await Producer.Create(new ProducerConfig(system, stream)
 {
     ConfirmationHandler = async confirmation =>
     {
-        Console.WriteLine($"Confirmed {confirmation.PublishingId}");
-        count = Interlocked.Increment(ref count);
+        if (Interlocked.Increment(ref count) % 300 == 0)
+        {
+            Console.WriteLine($"Confirmed {confirmation.PublishingId}");
+        }
+
         await Task.CompletedTask;
     },
 }, producerLogger);

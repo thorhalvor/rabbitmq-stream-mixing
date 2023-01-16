@@ -3,6 +3,7 @@ PHONY: producer consumer all init
 
 producer:
 	cd dotnet/stream_client/ && Make producer
+	cd python && Make producer
 
 consumer:
 	cd dotnet/stream_client/ && Make consumer
