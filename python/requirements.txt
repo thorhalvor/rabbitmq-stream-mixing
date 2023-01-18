@@ -1,5 +1,4 @@
 pika
 rstream
 uamqp
-rstream
 
