@@ -28,5 +28,32 @@ Run consumers
 make consumer
 ```
 
+How to add a new client
+---
+
+1- Go or create the specif directory for the language: <br />
+   ex: golang 
+
+2- Create the direcory for the client AMQP or stream <br />
+   
+   ex: golang/amqp_client ora golang/stream_client
+
+3- Add two programns: <br />
+   1- Producer <br />
+   2- Consumer
+
+4- Producer DOES NOT create the stream queue. The producer has to send tree diffent kind of messages:<br />
+   1- Only with the body <br />
+   2- Body and Properties <br />
+   3- Body, Properties and application properites <br />
+   
+5- Consumer has to consume and print the message. The consumer has to be clear in case of error.
+
+6- Create a Makefile with: <br />
+   make producer <br />
+   make consumer <br />
+   
+7- See for example: https://github.com/Gsantomaggio/rabbitmq-stream-mixing/tree/main/python
+   
 
 
