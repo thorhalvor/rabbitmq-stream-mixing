@@ -6,11 +6,14 @@ producer:
 	@echo "running AMQP pika producer"
 	venv/bin/python3 amqp_client/producer.py
 	venv/bin/python3 python_rstream/producer.py
+	#venv/bin/python3 python_rbfly/producer.py
+     
 
 consumer:
 	@echo "running AMQP pika consumer"
 	venv/bin/python3 amqp_client/consumer.py
 	venv/bin/python3 python_rstream/consumer.py
+	#venv/bin/python3 python_rbfly/consumer.py
 
 
 init-python:
