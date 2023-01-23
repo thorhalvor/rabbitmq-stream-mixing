@@ -15,7 +15,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <PackageReference Include="RabbitMQ.Stream.Client" Version="1.0.1" />
+      <PackageReference Include="RabbitMQ.Stream.Client" Version="1.1.0" />
     </ItemGroup>
 
 </Project>
