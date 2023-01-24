@@ -1,32 +1,33 @@
-﻿// See https://aka.ms/new-console-template for more information
-
+﻿using System.Net;
+using init;
 using RabbitMQ.Stream.Client;
 
-const string stream = "mixing";
-
+var hostname = "localhost";
+var port = 5552;
 
 Console.WriteLine("Initializing..");
 var config = new StreamSystemConfig
 {
     UserName = "guest",
     Password = "guest",
-    VirtualHost = "/"
+    VirtualHost = "/",
+    Endpoints = new List<EndPoint> {new DnsEndPoint(hostname,port)},
+    AddressResolver = new AddressResolver(new DnsEndPoint(hostname, port)),
 };
 // Connect to the broker and create the system object
 // the entry point for the client.
 var system = await StreamSystem.Create(config);
-Console.WriteLine($"Delete stream: {stream}");
+Console.WriteLine($"Delete stream: {Constants.Stream}");
 // Delete the stream
 
 try
 {
-    await system.DeleteStream(stream);
+    await system.DeleteStream(Constants.Stream);
 }
 catch (Exception e)
 {
     // ignore
-    
 }
 
-Console.WriteLine($"Create Stream: {stream}");
-await system.CreateStream(new StreamSpec(stream));
+Console.WriteLine($"Create Stream: {Constants.Stream}");
+await system.CreateStream(new StreamSpec(Constants.Stream));

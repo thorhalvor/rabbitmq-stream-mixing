@@ -1,14 +1,15 @@
 ﻿// See https://aka.ms/new-console-template for more information
 
+using System.Net;
 using System.Text;
-using Microsoft.Extensions.DependencyInjection;
+using init;
 using Microsoft.Extensions.Logging;
 using RabbitMQ.Stream.Client;
 using RabbitMQ.Stream.Client.AMQP;
 using RabbitMQ.Stream.Client.Reliable;
 
 Console.WriteLine("Starting DotNet Stream Producer");
-const string stream = "mixing";
+
 const int numberOfMessages = 100;
 var loggerFactory = LoggerFactory.Create(builder =>
 {
@@ -20,17 +21,23 @@ var producerLogger = loggerFactory.CreateLogger<Producer>();
 var streamLogger = loggerFactory.CreateLogger<StreamSystem>();
 
 
+var hostname = "localhost";
+var port = 5552;
+
 var config = new StreamSystemConfig
 {
     UserName = "guest",
     Password = "guest",
-    VirtualHost = "/"
+    VirtualHost = "/",
+    Endpoints = new List<EndPoint> {new DnsEndPoint(hostname,port)},
+    AddressResolver = new AddressResolver(new DnsEndPoint(hostname, port)),
 };
+
 // Connect to the broker and create the system object
 // the entry point for the client.
 var system = await StreamSystem.Create(config, streamLogger);
 var count = 0;
-var producer = await Producer.Create(new ProducerConfig(system, stream)
+var producer = await Producer.Create(new ProducerConfig(system, Constants.Stream)
 {
     ConfirmationHandler = async confirmation =>
     {
@@ -39,11 +46,11 @@ var producer = await Producer.Create(new ProducerConfig(system, stream)
             Console.WriteLine($"Confirmed {confirmation.PublishingId}");
         }
 
-        await Task.CompletedTask;
+        await Task.CompletedTask;;
     },
 }, producerLogger);
 
-Console.WriteLine($"Producer Created for stream {stream} ");
+Console.WriteLine($"Producer Created for stream {Constants.Stream} ");
 
 Console.WriteLine($"Sending {numberOfMessages} standard messages - only body");
 

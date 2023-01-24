@@ -22,4 +22,8 @@
       <PackageReference Include="RabbitMQ.Stream.Client" Version="1.1.0" />
     </ItemGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\init\init.csproj" />
+    </ItemGroup>
+
 </Project>
