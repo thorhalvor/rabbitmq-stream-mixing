@@ -70,7 +70,7 @@ Properties GetProperties(int i)
         CorrelationId = $"MyCorrelationId{i}",
         ContentType = "text/plain",
         ContentEncoding = "utf-8",
-        UserId = Encoding.UTF8.GetBytes("guest2"),
+        UserId = Encoding.UTF8.GetBytes("guest"),
         GroupSequence = 9999,
         ReplyToGroupId = "MyReplyToGroupId",
         Subject = "MySubject",
